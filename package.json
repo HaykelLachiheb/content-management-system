@@ -6,12 +6,8 @@
     "install:all": "npm install --prefix backend && npm install --prefix frontend",
     "dev:backend": "npm run dev --prefix backend",
     "dev:frontend": "npm run dev --prefix frontend",
-    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev": "node -e \"require('child_process').spawn('npx', ['concurrently', 'npm run dev:backend', 'npm run dev:frontend'], {stdio:'inherit', shell:true})\"",
     "build": "npm run build --prefix frontend",
-    "start": "npm start --prefix backend",
-    "azure-deploy": "npm run build && npm start"
-  },
-  "devDependencies": {
-    "concurrently": "^8.2.2"
+    "start": "node backend/server.js"
   }
 }
